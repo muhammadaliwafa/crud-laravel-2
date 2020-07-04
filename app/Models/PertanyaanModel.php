@@ -18,9 +18,27 @@ class PertanyaanModel{
     public static function get_question_by_id($pertanyaan_id){
         $new_item = DB::table('pertanyaan')->where('id', $pertanyaan_id)->first();
         $pertanyaan = $new_item->pertanyaan;
-        return $pertanyaan;
+        return $new_item;
     }
 
+    public static function update($id, $data){
+        // dd($data);
+        $new_item = DB::table('pertanyaan')
+                        ->where('id', $id)
+                        ->update([
+                            'pertanyaan'=>$data['pertanyaan']
+                        ]);
+
+        return $new_item;
+    }
+
+    public static function destroy($id){
+        $deleted = DB::table('pertanyaan')
+                        ->where('id', $id)
+                        ->delete();
+
+        return $deleted;
+    }
     // public static get_answer($pertanyaan_id){
 
     // }
