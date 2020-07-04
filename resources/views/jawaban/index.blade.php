@@ -3,7 +3,7 @@
 @section('content')
     <div class="ml-3">
         <table class="table">
-        <h1>{{$pertanyaan}}</h1>
+        <h1>{{$pertanyaan->pertanyaan}}</h1>
             <thead>
             <tr>
                 <th>No</th>
@@ -26,7 +26,7 @@
                 <label for="jawaban">Tambahkan jawaban :</label>
                 <textarea type="text" class="form-control" placeholder="Enter your answer" name="jawaban" id="jawaban"></textarea>
             </div>
-            <input type="hidden" name="pertanyaan_id" value={{$pertanyaan_id}}>
+            <input type="hidden" name="id" value={{$pertanyaan_id}}>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <a href="/pertanyaan" class = "btn btn-primary mt-3">question list</a>

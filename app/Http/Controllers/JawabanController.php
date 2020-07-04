@@ -28,6 +28,7 @@ class JawabanController extends Controller
         // dd($items);
         return view('jawaban.index', compact('items', 'pertanyaan_id','pertanyaan'));
     }
+    
     public function store($pertanyaan_id, Request $request){
         $data = $request->all();
         // dd($data);
