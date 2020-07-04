@@ -10,14 +10,17 @@ class PertanyaanModel{
     }
 
     public static function save($data){
-        $new_item = DB::table('pertanyaan')->insert($data);
+        // dd($data);
+        $new_item = DB::table('pertanyaan')->insert([
+            'pertanyaan'=>$data['pertanyaan'],
+            'created_at'=>$data['time']
+        ]);
 
         return $new_item;
     }
 
     public static function get_question_by_id($pertanyaan_id){
-        $new_item = DB::table('pertanyaan')->where('id', $pertanyaan_id)->first();
-        $pertanyaan = $new_item->pertanyaan;
+        $new_item = DB::table('pertanyaan')->where('id','=', $pertanyaan_id)->first();
         return $new_item;
     }
 
@@ -26,7 +29,8 @@ class PertanyaanModel{
         $new_item = DB::table('pertanyaan')
                         ->where('id', $id)
                         ->update([
-                            'pertanyaan'=>$data['pertanyaan']
+                            'pertanyaan'=>$data['pertanyaan'],
+                            'updated_at'=>$data['time']
                         ]);
 
         return $new_item;

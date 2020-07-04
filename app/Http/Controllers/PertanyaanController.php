@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PertanyaanModel;
 use App\Models\JawabanModel;
+use Carbon\Carbon;
 
 class PertanyaanController extends Controller
 {
@@ -20,10 +21,12 @@ class PertanyaanController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request->all());
+        $time = Carbon::now()->toDateTimeString();
         $data = $request->all();
         // dd($data);
         unset($data["_token"]);
+        $data['time']=$time;
+        
         $item = PertanyaanModel::save($data);
         if($item){
             
@@ -32,9 +35,17 @@ class PertanyaanController extends Controller
 
     }
     public function show($id){
+        $time = Carbon::now()->toDateTimeString();
+        // dd($time);
         $jawaban = JawabanModel::get_answer_by_id($id);
-        $pertanyaan = PertanyaanModel::get_question_by_id($id)->pertanyaan;
-        return view('pertanyaan.show', compact('id', 'pertanyaan', 'jawaban'));
+        $item_pertanyaan = PertanyaanModel::get_question_by_id($id);
+        if($item_pertanyaan != null){
+            $pertanyaan = $item_pertanyaan->pertanyaan;
+            return view('pertanyaan.show', compact('id', 'pertanyaan', 'jawaban'));  
+        }else{
+            return "error : pertanyaan kosong";
+        }
+        
     }
     public function edit($id){
         $pertanyaan = PertanyaanModel::get_question_by_id($id);
@@ -42,7 +53,10 @@ class PertanyaanController extends Controller
         return view('pertanyaan.edit', compact('pertanyaan'));
     }
     public function update($id, Request $request){
-        $item = PertanyaanModel::update($id, $request->all());
+        $time = Carbon::now()->toDateTimeString();
+        $data = $request->all();
+        $data['time']=$time;
+        $item = PertanyaanModel::update($id, $data);
         if($item){
             return redirect('/pertanyaan');
         }
