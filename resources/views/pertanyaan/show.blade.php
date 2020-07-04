@@ -2,12 +2,16 @@
 
 @section('content')
     <div class="ml-3">
+        <p>Judul Pertanyaan: <b><br>{{$pertanyaan->judul}}</b></p>
+        <p>detail pertanyaan : <br>{{$pertanyaan->pertanyaan}}</p>
+        <p>dibuat: {{$pertanyaan->created_at}}, diperbarui: {{$pertanyaan->updated_at}}</p>
         <table class="table">
-        <h1>{{$pertanyaan}}</h1>
+        
             <thead>
             <tr>
                 <th>No</th>
                 <th>Jawaban</th>
+                <th>dibuat</th>
                 
             </tr>
             </thead>
@@ -16,11 +20,12 @@
                     <tr>
                         <td>{{$key + 1}}</td>
                         <td>{{$item->jawaban}}</td>
+                        <td>{{$item->created_at}}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table> 
-        <form action="/jawaban/{{$id}}" method="POST">
+        <form action="/pertanyaan/{{$id}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="jawaban">Tambahkan jawaban :</label>

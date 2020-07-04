@@ -26,21 +26,21 @@ class PertanyaanController extends Controller
         // dd($data);
         unset($data["_token"]);
         $data['time']=$time;
-        
+        // dd($data);
         $item = PertanyaanModel::save($data);
         if($item){
             
             return redirect('/pertanyaan');
         }
+        
 
     }
     public function show($id){
         $time = Carbon::now()->toDateTimeString();
         // dd($time);
         $jawaban = JawabanModel::get_answer_by_id($id);
-        $item_pertanyaan = PertanyaanModel::get_question_by_id($id);
-        if($item_pertanyaan != null){
-            $pertanyaan = $item_pertanyaan->pertanyaan;
+        $pertanyaan = PertanyaanModel::get_question_by_id($id);
+        if($pertanyaan != null){
             return view('pertanyaan.show', compact('id', 'pertanyaan', 'jawaban'));  
         }else{
             return "error : pertanyaan kosong";

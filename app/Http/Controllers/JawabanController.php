@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JawabanModel;
 use App\Models\PertanyaanModel;
+use Carbon\Carbon;
 
 class JawabanController extends Controller
 {
@@ -28,13 +29,13 @@ class JawabanController extends Controller
         return view('jawaban.index', compact('items', 'pertanyaan_id','pertanyaan'));
     }
     public function store($pertanyaan_id, Request $request){
-        // dd($request->all());
         $data = $request->all();
         // dd($data);
+        $data['time'] = Carbon::now()->toDateTimeString();
         unset($data["_token"]);
         $item = JawabanModel::save($data);
         if($item){
-            return redirect("/jawaban/$pertanyaan_id");
+            return redirect("/pertanyaan/$pertanyaan_id");
         }
 
     }

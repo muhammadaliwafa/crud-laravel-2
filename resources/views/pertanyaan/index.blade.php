@@ -6,7 +6,7 @@
             <thead>
             <tr>
                 <th>No</th>
-                <th>Pertanyaan</th>
+                <th>Judul Pertanyaan</th>
                 <th>Action</th>
                 
             </tr>
@@ -15,7 +15,7 @@
                 @foreach($items as $key => $item)
                     <tr>
                         <td>{{$key + 1}}</td>
-                        <td>{{$item->pertanyaan}}</td>
+                        <td>{{$item->judul}}</td>
                         <td>
                             {{-- <a href="/jawaban/{{$item->id}}">lihat jawaban</a> --}}
                             <a href="/pertanyaan/{{$item->id}}" class="btn btn-sm btn-info">show</a>

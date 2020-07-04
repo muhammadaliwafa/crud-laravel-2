@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\DB;
 
 class PertanyaanModel{
     public static function get_all(){
-        $items = DB::table('pertanyaan')->get();
+        $items = DB::table('pertanyaans')->get();
         return $items;
     }
 
     public static function save($data){
         // dd($data);
-        $new_item = DB::table('pertanyaan')->insert([
+        $new_item = DB::table('pertanyaans')->insert([
+            'judul'=>$data['judul'],
             'pertanyaan'=>$data['pertanyaan'],
             'created_at'=>$data['time']
         ]);
@@ -20,15 +21,16 @@ class PertanyaanModel{
     }
 
     public static function get_question_by_id($pertanyaan_id){
-        $new_item = DB::table('pertanyaan')->where('id','=', $pertanyaan_id)->first();
+        $new_item = DB::table('pertanyaans')->where('id','=', $pertanyaan_id)->first();
         return $new_item;
     }
 
     public static function update($id, $data){
         // dd($data);
-        $new_item = DB::table('pertanyaan')
+        $new_item = DB::table('pertanyaans')
                         ->where('id', $id)
                         ->update([
+                            'judul'=>$data['judul'],
                             'pertanyaan'=>$data['pertanyaan'],
                             'updated_at'=>$data['time']
                         ]);
@@ -37,7 +39,7 @@ class PertanyaanModel{
     }
 
     public static function destroy($id){
-        $deleted = DB::table('pertanyaan')
+        $deleted = DB::table('pertanyaans')
                         ->where('id', $id)
                         ->delete();
 

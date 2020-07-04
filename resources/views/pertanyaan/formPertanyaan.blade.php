@@ -5,6 +5,8 @@
         <form action="/pertanyaan" method="POST">
             @csrf
             <div class="form-group">
+                <label for="title">Judul</label><br>
+                <input type="text" placeholder="enter the title" name="judul" id="title"><br>
                 <label for="question">Pertanyaan:</label>
                 <textarea type="text" class="form-control" placeholder="Enter your question" name="pertanyaan" id="question"></textarea>
             </div>

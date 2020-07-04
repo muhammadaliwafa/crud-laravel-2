@@ -6,6 +6,8 @@
             @csrf
             @method('PUT')
             <div class="form-group">
+                <label for="title">Judul</label><br>
+                <input type="text" placeholder="enter the title" name="judul" id="title" value="{{$pertanyaan->judul}}"><br>
                 <label for="question">Pertanyaan:</label>
                 <textarea type="text" class="form-control"  name="pertanyaan" id="question">{{$pertanyaan->pertanyaan}}</textarea>
             </div>
